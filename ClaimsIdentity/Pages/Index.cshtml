@@ -1,0 +1,54 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="p-3">
+    <div class="w-25">
+
+        <form method="post" class="index__form mb-2">
+
+            <div class="form-group col-md-12 mb-2">
+                <label asp-for="User.Name"></label>
+                <input asp-for="User.Name" class="form-control" />
+            </div>
+
+            <div class="form-group col-md-12 mb-2">
+                <label asp-for="User.Surname"></label>
+                <input asp-for="User.Surname" class="form-control" />
+            </div>
+
+            <div class="form-group col-md-12 mb-4">
+                <label asp-for="User.Year"></label>
+                <input asp-for="User.Year" class="form-control" />
+            </div>
+
+            <button type="submit" class="btn btn-primary col-md-12 index__button">Send</button>
+
+        </form>
+    </div>
+
+
+    <div class="d-flex flex-column">
+        <span asp-validation-for="User.Name" class="text-danger"></span>
+        <span asp-validation-for="User.Surname" class="text-danger"></span>
+        <span asp-validation-for="User.Year" class="text-danger"></span>
+    </div>
+
+    @{
+        if (Model.User != null)
+        {
+            <p>@Model.Result</p>
+        }
+    }
+
+    <div class="text-center">
+        <p>Lista dzisiejszych użytkowników (@Model.Records.Count):</p>
+        @foreach (var item in Model.Records.People) {
+            <p>@item.Name @item.Surname @item.CreatedTime</p>
+        }
+</div>
+</div>
+earn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>

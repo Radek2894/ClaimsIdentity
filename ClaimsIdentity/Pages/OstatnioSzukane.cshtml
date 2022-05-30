@@ -1,0 +1,44 @@
+﻿@page
+@model ClaimsIdentity.Pages.OstatnioSzukaneModel
+@{
+    ViewData["Title"] = "Ostatnio szukane";
+}
+
+<head>
+    <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+
+
+
+<div class="">
+    <div class="index__form col-6">
+
+        @foreach (var item in Model.Records.People)
+        {
+            <div class="d-flex" style="margin-bottom: 10px;">
+                <div onclick="myFunction(this)" class="OstatnioSzukane d-flex">
+                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => item.Surname)
+                    <div style="margin-left: auto;">
+                        @Html.DisplayFor(modelItem => item.CreatedTime)
+                    </div>
+                </div>
+                @{
+                  if (item.OwnerId == Model.CurrentUserId)
+                  {
+                      <a onmouseover="user_remove(this)" onmouseout="user_dont_remove(this)" class="a__delete" asp-page="./People/Delete" asp-route-id="@item.Id">
+                      <span class="material-symbols-outlined">delete</span>
+                      </a>
+                   }
+                 }
+               
+            </div>
+            
+        }
+    </div>
+</div>
+
+
+
+
+
